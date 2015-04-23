@@ -1,0 +1,75 @@
+{
+  "patient_details":{
+    "name":"Meyers, Jordan",
+    "sex":"Male",
+    "dob":"July 16, 1984",
+    "next_of_kin":"Jennifer Meyers",
+    "phone":"(123)-456-7890",
+    "address":"American Plaza, San Diego, CA, 92121"
+  },
+  "gp_details":{
+    "name":"Jones, John",
+    "phone":"(123)-456-7890",
+    "address":"123 Bobsville, San Diego, CA, 92123"
+  },
+  "other_healthcare_providers":[
+    {
+      "name":"Diaz, Ellen",
+      "disp":"Cardiology",
+      "phone":"(333)-456-7890",
+      "last_encounter":"01-01-2001",
+      "next_encounter":"01-01-2005"
+    },
+    {
+      "name":"Fournier, Janice",
+      "disp":"RN",
+      "phone":"(444)-456-7890",
+      "last_encounter":"03-01-2003"
+    }
+  ],
+  "medications":[
+    {
+      "date":"12-01-2000",
+      "medications":"Hyrdochlothoridize 25mg",
+      "prescriptions":"One tab at breakfast",
+      "last_filled":"12-01-2000"
+
+    },
+    {
+      "date":"2-11-2000",
+      "medications":"Glyburide 5mg",
+      "prescriptions":"One tab twice daily",
+      "last_filled":"12-01-2000"
+    }
+  ],
+  "encounter_history":[
+    {
+      "date":"04-04-2004",
+      "facility":"GP",
+      "specialty":"",
+      "clinician":"",
+      "reason":"Hypertension",
+      "type":"-"
+    },
+    {
+      "date":"04-04-2004",
+      "facility":"Cardio Assoc",
+      "specialty":"Cardiology",
+      "clinician":"Diaz, E.",
+      "reason":"CAD",
+      "type":"outpatient"
+    }
+  ],
+  "immunizations":[
+    {
+      "type":"Influenza",
+      "most_recent":"11/2005",
+      "number_received":7
+    },
+    {
+      "type":"Td",
+      "most_recent":"4/1996",
+      "number_received":3
+    }
+  ]
+}
