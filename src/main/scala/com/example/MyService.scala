@@ -26,7 +26,7 @@ trait MyService extends HttpService {
 
   def jsonFile(name:String) = Source.fromFile("src/main/resources/"+name).mkString
 
-  val myRoute = baseRoute ~ jordanRoute
+  val myRoute = baseRoute ~ emrLookup
 
   def baseRoute =  path("") {
       get {
@@ -44,9 +44,9 @@ trait MyService extends HttpService {
 
   lazy val jordanEmr = jsonFile("JordanMeyers.json")
 
-  def jordanRoute = path("00:01:02:03:04:05") {
-    get {
+  def emrLookup = path("[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}".r) {
+    mac =>
+      println(mac)
       respondWithMediaType(`application/json`){ complete(jordanEmr) }
-    }
   }
 }
