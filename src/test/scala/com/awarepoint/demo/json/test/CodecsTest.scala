@@ -22,7 +22,9 @@ class CodecsTest extends FlatSpec with Matchers {
   "A Codec" should "translate from JSON to Scala and back" in {
     val jsonAst = source.parseJson
     println(jsonAst.prettyPrint)
-    println(jsonAst.convertTo[BeaconLocation])
+    val beaconLocation = jsonAst.convertTo[BeaconLocation]
+    println(beaconLocation)
+    println(beaconLocation.toJson.prettyPrint)
   }
 
 }
