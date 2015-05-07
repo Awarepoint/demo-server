@@ -41,9 +41,13 @@ trait MyService extends HttpService {
   }
 
   def images = path("image" / "(\\S+)".r){s =>
-    respondWithMediaType(`image/gif`){complete(
-      HttpData(new File(s"src/main/resources/image/${s}.gif"))
-    )}
+    val IMG_DIR = "src/main/resources/image/"
+    val (mediaType,img) = s match {
+      case "eampleEMR" => (`image/gif`,IMG_DIR+"eampleEMR.gif")
+      case _ =>           (`image/png`,IMG_DIR+"profile1.png")
+    }
+
+    respondWithMediaType(mediaType){complete( HttpData(new File(img)) )}
   }
 
   //Creates a number of rooms in a straight line, all sharing a single hallway above them
@@ -51,10 +55,10 @@ trait MyService extends HttpService {
   val rooms = (
     for{
       i <- (1 to TOTAL_ROOMS).toList
-      a=Point((i-1)*10,0)
-      b=Point(    i*10,0)
-      c=Point(a.x,10)
-      d=Point(b.x,10)
+      a = Point((i-1)*10,0)
+      b = Point(    i*10,0)
+      c = Point(a.x,10)
+      d = Point(b.x,10)
       vertices = Set(a,b,c,d)
     } yield Room(i,vertices)
   ) :+ Room(TOTAL_ROOMS+1,Set(Point(0,10),Point(0,20),Point(TOTAL_ROOMS*10,10),Point(TOTAL_ROOMS*10,20)))
