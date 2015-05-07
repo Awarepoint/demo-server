@@ -1,10 +1,12 @@
 package com.example
 
+import java.io._
 import akka.actor.Actor
 import spray.routing._
 import spray.http._
 import MediaTypes._
 import scala.io.Source
+import org.apache.commons.io.IOUtils
 
 // we don't implement our route structure directly in the service actor because
 // we want to be able to test it independently, without having to spin up an actor
@@ -26,7 +28,7 @@ trait MyService extends HttpService {
 
   def jsonFile(name:String) = Source.fromFile("src/main/resources/"+name).mkString
 
-  val myRoute = baseRoute ~ emrLookup
+  val myRoute = baseRoute ~ images ~ emrLookup
 
   def baseRoute =  path("") {
       get {
@@ -48,5 +50,11 @@ trait MyService extends HttpService {
     mac =>
       println(mac)
       respondWithMediaType(`application/json`){ complete(jordanEmr) }
+  }
+
+  def images = path("image" / "(\\S+)".r){s =>
+    respondWithMediaType(`image/gif`){complete(
+      HttpData(new File(s"src/main/resources/image/${s}.gif"))
+    )}
   }
 }
